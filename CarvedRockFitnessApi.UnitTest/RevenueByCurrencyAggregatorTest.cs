@@ -77,13 +77,5 @@ namespace CarvedRockFitnessApi.UnitTest
 
             Assert.Null(result.ToList().FirstOrDefault(currencyByRevenue => currencyByRevenue.Currency == Currency.Unknown)?.Revenue);
         }
-
-        [Test]
-        public void FlakyTest()
-        {
-            var random = new Random();
-            var diceRole = random.Next(1, 7);
-            Assert.Greater(diceRole, 3);
-        }
     }
 }
