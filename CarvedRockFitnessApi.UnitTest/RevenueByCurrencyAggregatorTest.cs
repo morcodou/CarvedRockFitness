@@ -3,6 +3,7 @@ using CarvedRockFitnessApi.Models;
 using CarvedRockFitnessApi.Services;
 using Moq;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -75,6 +76,14 @@ namespace CarvedRockFitnessApi.UnitTest
             var result = this.revenueByCurrencyAggregator.GetRevenueByCurrency();
 
             Assert.Null(result.ToList().FirstOrDefault(currencyByRevenue => currencyByRevenue.Currency == Currency.Unknown)?.Revenue);
+        }
+
+        [Test]
+        public void FlakyTest()
+        {
+            var random = new Random();
+            var diceRole = random.Next(1, 7);
+            Assert.Greater(diceRole, 3);
         }
     }
 }
