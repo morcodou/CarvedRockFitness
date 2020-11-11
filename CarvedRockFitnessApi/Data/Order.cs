@@ -1,5 +1,4 @@
 ﻿using CarvedRockFitnessApi.Models;
-using System;
 
 namespace CarvedRockFitnessApi.Data
 {
