@@ -76,5 +76,20 @@ namespace CarvedRockFitnessApi.UnitTest
 
             Assert.AreEqual(0, result.ToList().FirstOrDefault(currencyByRevenue => currencyByRevenue.Currency == Currency.Unknown)?.Revenue);
         }
+
+        [Test]
+        public void GetRevenueByCurrencyOrdered_CurrenciesNotInOrder_ReorderedByRevenue()
+        {
+            this.orderRepository.Setup(repository => repository.GetOrdersPlacedToday()).Returns(new List<Order>()
+            {
+                new Order(Currency.Gbp, 10m),
+                new Order(Currency.Eur, 100m)
+            });
+
+            var result = this.revenueByCurrencyAggregator.GetRevenueByCurrencyOrdered();
+            var expected = new[] { 100m, 10m, 0m, 0m };
+
+            Assert.IsTrue(result.Select(res => res.Revenue).SequenceEqual(expected));
+        }
     }
 }
