@@ -22,6 +22,7 @@ namespace CarvedRockFitnessApi.Services
             var revenueInCurrencyList = new List<RevenueInCurrency>();
             foreach (Currency currency in Enum.GetValues(typeof(Currency)))
             {
+                // exlude unknow
                 var currencyOrderValue = 0m;
 
                 if (orderValueByCurrency.ContainsKey(currency))
